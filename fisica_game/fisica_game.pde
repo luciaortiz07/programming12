@@ -1,69 +1,80 @@
 import fisica.*;
+Gif soccer;
+boolean wkey, akey, skey, dkey, upkey, downkey, rightkey, leftkey;
+int scoreL, scoreR;
 
+//mode framework
+int mode;
+int intro = 1;
+int game = 2;
+//int pause = 3;
+//int gameover= 4;
+
+//images
+PImage messi;
+PImage mabappe;
+PImage soccerball;
+
+//PImage arena;
 FWorld world;
 FCircle ball;
 FBox ground;
 FBox player1;
+FBox player2;
+FBox line1;
+FBox line2;
+FBox scoreboard;
+//FBox background;
+
 void setup() {
   size(800, 600);
-  Fisica.init(this);
-  world = new FWorld();
+
+  //initializting variables
+  mode = intro;
+  wkey = akey = skey = dkey = upkey = downkey = rightkey = leftkey = false;
+  scoreL= scoreR = 0;
   
-  // Set gravity
-  world.setGravity(0, 1000);
-  
-  // ball
-  ball = new FCircle(30);
-  ball.setPosition(width / 2, height / 2);
-  //ball.setRestitution(1.5); 
-  ball.setDensity(4);
-  ball.setFill(0); 
-  world.add(ball);
-  
-  
-  // ground
-  ground = new FBox(width, 50);
-  ground.setStatic(true);
-  ground.setPosition(width / 2, height - 5);
-  ground.setFill(28, 145, 68);  // green
-  world.add(ground);
-  
-  
-  // player 1
-  player1 = new FBox(50, 100);
-  player1.setStatic(false);
-  player1.setPosition(150, height - 100);
-  player1.setFill(0, 0, 255);  // Blue
-  world.add(player1);
-  
-  // player 2
-  FBox player2 = new FBox(50, 100);
-  player2.setStatic(true);
-  player2.setPosition(width - 150, height - 100);
-  player2.setFill(255, 0, 0);  // Red
-  world.add(player2);
+ //load resourses   
+  soccer= new Gif("soccer/frame_", "_delay-0.06s.png", 26, 5, 0, 0,850,600);
+  messi = loadImage("messi.png");
+  mabappe = loadImage("mabappe.png");
+  soccerball = loadImage("soccerball.png");
+
+//world
+createWorld();
+
+// scoreboard
+createBoard();
+
+//lines
+createLines();
+
+//reset();
+
+  //ball  
+createBall();
+
+//players
+createPlayer1();
+createPlayer2();
+
+//-------
+////  // ground
+//  ground = new FBox(width, 50);
+//  ground.setStatic(true);
+//  ground.setPosition(width / 2, height - 5);
+//  ground.setFill(28, 145, 68);  // green
+//  world.add(ground);
+
 }
 
+// --------- draw ----------------------
 void draw() {
-  background(255);
-  world.step();
-  world.draw();
-}
-
-void keyPressed() {
-//  if (key == 'w') {
-//    ball.setVelocity(100, -500); 
-//  }
-  if (key == 'd'){
+  
+  if (mode == intro) {
+    intro();
+  } else {
+    game();
   }
-    player1.setVelocity(0, -500); 
-    if (key == 'w'){
-    player1.setVelocity(0, 500); 
-}
- if (key == 's'){
-    player1.setVelocity(500, 0); 
- }
- if (key == 'a'){
-    player1.setVelocity(-500, 0); 
- }
+  
 }

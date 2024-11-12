@@ -35,4 +35,12 @@ void game(){
   text(scoreL, 350, 55);
   fill(#1A03FC);
   text(scoreR, 430, 55);
+  
+  // transition to end
+   if (scoreR == 5) {
+   mode = gameover;
+  
+   } else if (scoreL == 5) {
+   mode = gameover;
+   }
 }

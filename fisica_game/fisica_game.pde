@@ -8,7 +8,7 @@ int mode;
 int intro = 1;
 int game = 2;
 //int pause = 3;
-//int gameover= 4;
+int gameover= 3;
 
 //images
 PImage messi;
@@ -70,11 +70,13 @@ createPlayer2();
 
 // --------- draw ----------------------
 void draw() {
-  
-  if (mode == intro) {
-    intro();
+if (mode == intro) {
+  intro();
+ }else if (mode == game) {
+  game();
+  } else if (mode == gameover) {
+  gameover();
   } else {
-    game();
+  println("mode: " + "error");
   }
-  
 }

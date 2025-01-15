@@ -3,7 +3,10 @@ cascade.show();
 level1Music.pause();
 level2Music.play();
 
+//println(level2Music.position());
+
 level = 2;
+txtCount = 2;
   
   textSize(220);
   fill(255);

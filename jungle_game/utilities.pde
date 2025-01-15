@@ -10,3 +10,10 @@ void tactileRect(float x, float y, int w, int h){
    rect(x, y, w, h);
 }
 }
+
+//-----reverse image ----
+
+PImage revImage(PImage img){
+  scale(-1, 1);
+  return img;
+}

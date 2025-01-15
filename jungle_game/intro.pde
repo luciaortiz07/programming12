@@ -2,6 +2,12 @@ void intro(){
   tarzanIntro.show();
   introMusic.play();
   
+  if(introMusic.position() >= 64679){
+    introMusic.rewind();
+  }
+ 
+ //println(introMusic.position());
+ 
   textSize(200);
   fill(#CB8108);
   text("TARZAN", 50, 250);

@@ -1,6 +1,6 @@
 class FPlayer extends FGameObject {
   
-  int direction;
+  int direction = R;
   int frame = 0;
   int frameCounter = 0;
   int fs = 0;
@@ -11,7 +11,7 @@ class FPlayer extends FGameObject {
 
   
   // Player behavior state
-  //final int RESET = 0;
+  final int RESET = 0;
   final int PLAY = 1;
   final int INMUNE = 2;
   int inmuneTimer;
@@ -25,6 +25,7 @@ class FPlayer extends FGameObject {
     setFillColor(red);
     inmuneTimer = 0;
     setRestitution(0);
+    state = 0;
     
   } 
   
@@ -37,7 +38,7 @@ class FPlayer extends FGameObject {
        if(inmuneTimer > thrInmune){
     state = 1;
     inmuneTimer = 0;
-    frameTint = 0;
+    //frameTint = 0;
     }   
   }
    
@@ -51,7 +52,8 @@ class FPlayer extends FGameObject {
        bump.play();
        world.remove(this);
        lives--;
-       loadPlayer();
+       state = RESET;
+       reset(level);
      }
      if(state == 2) setRestitution(1);
    }
@@ -62,7 +64,8 @@ class FPlayer extends FGameObject {
        bump.play();
        world.remove(this);
        lives--;
-       loadPlayer();
+       state = RESET;
+       reset(level);
      }
      if(state == 2) setRestitution(1);
    }
@@ -72,8 +75,9 @@ class FPlayer extends FGameObject {
        lives--;
        bump.rewind();
        bump.play();
-     world.remove(this);
-     loadPlayer();
+       world.remove(this);
+       state = RESET;
+       reset(level);
      }
    }
    
@@ -120,6 +124,7 @@ if (isTouching("pause")) {
    if (lives == 0) {
      mode = gameover;
    }
+   
   }
   
    void animate(){
@@ -127,8 +132,12 @@ if (isTouching("pause")) {
    frameCounter++;
    if(frameCounter >= 5) {
    if(frame >=tarzan.length) frame =0;
+   //TARZAN
     if(player_sel =="TARZAN") attachImage(tarzan[frame]);
+    
+   // JANE
     if(player_sel =="JANE") attachImage(jane[frame]);
+    //if(player_sel =="JANE" && getVelocityX() < 0) attachImage(revImage(jane[frame]));
     frame++;
     frameCounter = 0;
   }
@@ -154,11 +163,16 @@ if (clicked){
     float vy = getVelocityY();
     float vx = getVelocityX();
     
-   
+   if(state == RESET){
+      //setVelocity(0, -10);
+      if(isTouching("dirt")) state = PLAY;
+    }
+    if(state == PLAY || state == INMUNE){
     if(akey) setVelocity(-100,vy);
     if(dkey)setVelocity(100,vy);
     if(wkey) setVelocity(vx,-200);
-    if(skey) setVelocity(vx, 100);    
+    if(skey) setVelocity(vx, 100);   
+   }
     
   }
 

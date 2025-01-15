@@ -1,4 +1,6 @@
 void game() {
+  
+  //background images
   image(jungle, 0, 0, width, height);
   
   if (player.state == 1) {
@@ -6,7 +8,22 @@ void game() {
     image(jungle, 0, 0, width, height);
     }
     
-
+  //music restart   
+   if(level == 1 && level1Music.position() >= 65227){
+    level1Music.cue(10000);
+    level1Music.play();
+  }
+  
+  if(level == 2 && level2Music.position() >= 132414){
+    level2Music.cue(7500);
+    level2Music.play();
+  }
+  
+  if(level == 3 && level3Music.position() >= 60943){
+    level3Music.rewind();
+  }
+ 
+  //World
   drawWorld();
   actWorld();
   //println(lives);
@@ -36,6 +53,11 @@ void drawWorld() {
     if (player.state == 2) {
     tint(0, 153, 204, 126);
     inmuneMusic.play();
+    
+    if(inmuneMusic.position() >= 36000){
+    inmuneMusic.rewind();
+  }
+  
     } else {
       noTint();
       inmuneMusic.pause();
@@ -66,13 +88,12 @@ void drawWorld() {
        locTxt[txtCount] = player.momX;
        txtCount = nMom + 1;
        nMom++;
-       
-       txtTimer = 0;     
-    
+       txtTimer = 0;
+       if(txtCount > 4) txtCount = 1;
       }
      
   }
-
+  
 //println(npcText, txtTimer, txtCount, locTxt[0],locTxt[1],player.momX,nMom);
   
   float life = map(lives, 0, 5, 0, 29);

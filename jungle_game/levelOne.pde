@@ -2,7 +2,9 @@ void levelOne(){
   croc.show();
   introMusic.pause();
   level1Music.play();
+ 
   level = 1;
+  txtCount = 0;
   
   textSize(220);
   fill(255);

@@ -3,7 +3,10 @@ void levelThree(){
   level2Music.pause();
   level3Music.play();
   
+//  println(level3Music.position());
+  
   level = 3;
+  txtCount = 3;
  
   textSize(220);
   fill(255);

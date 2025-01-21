@@ -8,6 +8,12 @@ void game() {
     image(jungle, 0, 0, width, height);
     }
     
+  //  // button PAUSE
+  //tactileRect(width/2-300, height/2-300, 200, 75);
+  //textSize(45);
+  //fill(#CB8108);
+  //text("PAUSE", width/2-260, height/2-248); 
+    
   //music restart   
    if(level == 1 && level1Music.position() >= 65227){
     level1Music.cue(10000);
@@ -63,11 +69,6 @@ void drawWorld() {
       inmuneMusic.pause();
     }
   
- //// button PAUSE
-  //tactileRect(player.getX()-250, player.getY()+150, 200, 75);
-  //textSize(45);
-  //fill(255);
-  //text("PAUSE", player.getX()-210, player.getY()+ 200);
   
   if(npcText == true){
     txtTimer++;
@@ -111,7 +112,7 @@ void drawWorld() {
 }
 
 //void gameClicks() {
-//  if (mouseX > player.getX()-250 && mouseX < player.getX()-50 && mouseY > player.getY()+150 && mouseY < player.getY()+225) { 
+//  if (mouseX > width/2-300 && mouseX < width/2-100 && mouseY > height/2-300 && mouseY < height/2-225) { 
 //    mode = pause;
 //  } 
 //  }

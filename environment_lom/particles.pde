@@ -26,8 +26,8 @@ class Particles extends GameObject {
   //translate(loc.x, loc.y, loc.z);
   //box(w);
   
-  if(like == true)  texturedCube(loc.x, loc.y, loc.z, thumbup, random(5,10));
-  if(like == false) texturedCube(loc.x, loc.y, loc.z, thumbdown, random(5,10));
+  if(like == true)  texturedCube(loc.x, loc.y, loc.z, thumbup, w);
+  if(like == false) texturedCube(loc.x, loc.y, loc.z, thumbdown, w);
   
   popMatrix();
   }

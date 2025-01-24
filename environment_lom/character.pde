@@ -99,8 +99,8 @@ boolean canMoveRight() {
     //float rightx,  rightz; //righty,
     int mapx, mapz; //, maplx, maply, maprx, mapry;
     
-    fwdx = eyeX + cos(leftRightHeadAngle + radians(90))*250;
-    fwdz = eyeZ + sin(leftRightHeadAngle + radians(90))*250;
+    fwdx = eyeX + cos(leftRightHeadAngle + radians(90))*200;
+    fwdz = eyeZ + sin(leftRightHeadAngle + radians(90))*200;
     
     //leftx = eyeX + cos(leftRightHeadAngle + radians(110))*200;
     //leftz = eyeZ + sin(leftRightHeadAngle + radians(110)) * 200;
